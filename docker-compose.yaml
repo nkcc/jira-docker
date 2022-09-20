@@ -20,7 +20,7 @@ services:
       - ATL_DB_DRIVER=${DB_DRIVER}
       - JVM_SUPPORT_RECOMMENDED_ARGS=${JVM_SUPPORT_RECOMMENDED_ARGS}
     volumes:
-    - ./mysql-connector-java-8.0.22.jar:/opt/atlassian/confluence/confluence/WEB-INF/lib/mysql-connector-java-8.0.22.jar
+    # - ./mysql-connector-java-8.0.22.jar:/opt/atlassian/confluence/confluence/WEB-INF/lib/mysql-connector-java-8.0.22.jar
       - ./data/jira:/var/atlassian/application-data/jira
     depends_on:
       - db
