@@ -6,7 +6,7 @@ services:
     container_name: jira
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./docker/Dockerfile
     environment:
       - ATL_PROXY_NAME=${PROXY_NAME}
       - ATL_PROXY_PORT=${PROXY_PORT}
