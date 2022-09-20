@@ -1,4 +1,4 @@
-yourdomain.com {
+seal.lmkcc.tk {
     proxy / jira:8080 {
         websocket
         transparent

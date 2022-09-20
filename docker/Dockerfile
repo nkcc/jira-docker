@@ -1,4 +1,4 @@
-FROM atlassian/jira-software:${JIRA_VERSION}
+FROM atlassian/jira-software:8.20.10
 
 LABEL version="1.0"
 LABEL description="Docker Image With Fixes & Built In MYSQL Driver"
