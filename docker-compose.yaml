@@ -1,0 +1,52 @@
+version: '3.6'
+
+services:
+
+  jira:
+    container_name: jira
+    image: itsdesm/jira-docker:8.21.1
+    environment:
+      - ATL_PROXY_NAME=${PROXY_NAME}
+      - ATL_PROXY_PORT=${PROXY_PORT}
+      - ATL_TOMCAT_SCHEME=${PROXY_SCHEME}
+      - JVM_MINIMUM_MEMORY=${JVM_MINIMUM_MEMORY}
+      - JVM_MAXIMUM_MEMORY=${JVM_MAXIMUM_MEMORY}
+      - ATL_DB_TYPE=${DB_TYPE}
+      - ATL_JDBC_URL=${DB_URL}
+      - ATL_JDBC_USER=${DB_USER_NAME}
+      - ATL_JDBC_PASSWORD=${DB_USER_PASSWORD}
+      - ATL_DB_DRIVER=${DB_DRIVER}
+      - JVM_SUPPORT_RECOMMENDED_ARGS=${JVM_SUPPORT_RECOMMENDED_ARGS}
+    volumes:
+      - ./data/jira:/var/atlassian/application-data/jira
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    container_name: db
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE_NAME}
+      - MYSQL_USER=${DB_USER_NAME}
+      - MYSQL_PASSWORD=${DB_USER_PASSWORD}
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./config/mysql:/etc/mysql/conf.d
+    restart: always
+
+  caddy:
+    container_name: caddy
+    image: abiosoft/caddy:1.0.3-no-stats
+    environment:
+      - ACME_AGREE=true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/caddy/Caddyfile:/etc/Caddyfile
+      - ./data/caddy:/root/.caddy
+    depends_on:
+      - jira
+    restart: always

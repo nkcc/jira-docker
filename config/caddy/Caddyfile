@@ -1,0 +1,7 @@
+yourdomain.com {
+    proxy / jira:8080 {
+        websocket
+        transparent
+    }
+    gzip
+}
