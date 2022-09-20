@@ -4,7 +4,7 @@ services:
 
   jira:
     container_name: jira
-    image: itsdesm/jira-docker:8.21.1
+    image: atlassian/jira-software:8.22.6
     environment:
       - ATL_PROXY_NAME=${PROXY_NAME}
       - ATL_PROXY_PORT=${PROXY_PORT}
@@ -38,7 +38,7 @@ services:
 
   caddy:
     container_name: caddy
-    image: abiosoft/caddy:1.0.3-no-stats
+    image: abiosoft/caddy
     environment:
       - ACME_AGREE=true
     ports:
