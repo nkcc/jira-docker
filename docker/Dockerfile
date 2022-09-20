@@ -1,6 +1,5 @@
 FROM atlassian/jira-software
 
-MAINTAINER David Melo
 LABEL version="1.0"
 LABEL description="Docker Image With Fixes & Built In MYSQL Driver"
 
