@@ -1,3 +1,5 @@
+Jira-docker is a docker compose config for user quickly set up a jira in self host repository.
+
 ## Dockerized Jira 8.7.1 + MySQL 5.7 + Caddy HTTPS
 
 Docker-Compose setup for running Atlassian Jira on Docker
